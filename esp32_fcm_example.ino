@@ -70,7 +70,7 @@ void sendNotificationToSelectedDriver(const String &accessToken)
 
     client.setInsecure(); // Skip certificate validation for testing, not recommended for production
 
-    http.begin(client, "https://fcm.googleapis.com/v1/projects/dev-smart-garden/messages:send");
+    http.begin(client, "https://fcm.googleapis.com/v1/projects/your-name-project/messages:send");
     
     http.addHeader("Authorization", "Bearer " + accessToken);
     http.addHeader("Content-Type", "application/json");
@@ -84,11 +84,11 @@ void sendNotificationToSelectedDriver(const String &accessToken)
     http.addHeader("Content-Length", "290"); // Sesuaikan dengan panjang konten yang sesungguhnya
 
     StaticJsonDocument<256> message;
-    message["message"]["topic"] = "smart_plant";
-    message["message"]["notification"]["title"] = "Smart Garden";
-    message["message"]["notification"]["body"] = "test notif";
-    message["message"]["android"]["notification"]["icon"] = "notification_icon";
-    message["message"]["data"]["tripId"] = "your_trip_id_here"; // Isi dengan data trip ID yang sesuai
+    message["message"]["topic"] = "your_topic";
+    message["message"]["notification"]["title"] = "Title";
+    message["message"]["notification"]["body"] = "this example";
+    message["message"]["android"]["notification"]["icon"] = "notification_icon"; // adjust with your name of icon notification
+    message["message"]["data"]["yourdata"] = "your data"; // Isi dengan data trip ID yang sesuai
 
     String messageString;
     serializeJson(message, messageString);
